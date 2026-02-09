@@ -1,0 +1,232 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "Akshar";
+  src: url("/fonts/Akshar/Akshar.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Deng";
+  src: url("/fonts/Deng/Deng.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Deng";
+  src: url("/fonts/Deng/Dengb.otf") format("opentype");
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Deng";
+  src: url("/fonts/Deng/Dengl.otf") format("opentype");
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Inter";
+  src: url("/fonts/Inter/Inter_18pt-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Inter";
+  src: url("/fonts/Inter/Inter_18pt-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Inter";
+  src: url("/fonts/Inter/Inter_18pt-Light.ttf") format("truetype");
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Roboto";
+  src: url("/fonts/Roboto/Roboto.ttf") format("truetype");
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Lato";
+  src: url("/fonts/Lato/Lato-Thin.ttf") format("truetype");
+  font-weight: 100;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Lato";
+  src: url("/fonts/Lato/Lato-ThinItalic.ttf") format("truetype");
+  font-weight: 100;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Lato";
+  src: url("/fonts/Lato/Lato-Light.ttf") format("truetype");
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Lato";
+  src: url("/fonts/Lato/Lato-LightItalic.ttf") format("truetype");
+  font-weight: 300;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Lato";
+  src: url("/fonts/Lato/Lato-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Lato";
+  src: url("/fonts/Lato/Lato-Italic.ttf") format("truetype");
+  font-weight: 400;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Lato";
+  src: url("/fonts/Lato/Lato-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Lato";
+  src: url("/fonts/Lato/Lato-BoldItalic.ttf") format("truetype");
+  font-weight: 700;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Lato";
+  src: url("/fonts/Lato/Lato-Black.ttf") format("truetype");
+  font-weight: 900;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Lato";
+  src: url("/fonts/Lato/Lato-BlackItalic.ttf") format("truetype");
+  font-weight: 900;
+  font-style: italic;
+}
+
+body {
+  font-family: "Lato", sans-serif;
+}
+
+.font-akshar {
+  font-family: "Akshar", sans-serif !important;
+}
+
+@layer utilities {
+  @keyframes slide-up {
+    0% {
+      transform: translateY(10px);
+      opacity: 0;
+    }
+    100% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  @keyframes blink {
+    0%,
+    100% {
+      background-color: #ff0000;
+      box-shadow: 0 0 15px 5px rgba(255, 0, 0, 0.7);
+    }
+    50% {
+      background-color: #b22222;
+      box-shadow: none;
+    }
+  }
+
+  @keyframes blink2 {
+    0%,
+    100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0;
+    }
+  }
+
+  @keyframes blinktext {
+    0%,
+    100% {
+      color: #ff0000;
+      text-shadow: 0 0 15px rgba(255, 0, 0, 0.7);
+    }
+    50% {
+      color: #b22222;
+      text-shadow: none;
+    }
+  }
+  @keyframes slide-down {
+    0% {
+      transform: translateY(-10px);
+      opacity: 0;
+    }
+    100% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  .animate-fade-in {
+    animation: fade-in 0.2s ease-out forwards;
+  }
+
+  .blink {
+    animation: blink 1s infinite;
+    color: white;
+  }
+
+  .blink2 {
+    animation: blink2 1s infinite;
+  }
+
+  .blinktext {
+    animation: blinktext 1s infinite;
+  }
+
+  .animate-slide-up {
+    animation: slide-up 0.3s ease-out;
+  }
+
+  .animate-slide-down {
+    animation: slide-down 0.3s ease-out;
+  }
+
+  .input-text-size {
+    font-size: 12px;
+  }
+}

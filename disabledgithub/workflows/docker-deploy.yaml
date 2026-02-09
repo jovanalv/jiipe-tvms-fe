@@ -1,0 +1,50 @@
+name: Deploy to VPS
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: SSH into VPS and deploy
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USER }}
+          password: ${{ secrets.VPS_PASSWORD }}
+          port: ${{ secrets.VPS_PORT }}
+          script: |
+            # Pastikan direktori proyek ada, jika tidak buat dan clone
+            if [ ! -d "/home/prducts/igas1/igas-product-frontend" ]; then
+              mkdir -p /home/products/igas1/igas-product-frontend
+              git clone https://github.com/Egalite-Dev-Ops/igas-product-frontend.git /home/products/igas1/igas-product-frontend
+            fi
+
+            cd /home/products/igas1/igas-product-frontend
+
+            # Hentikan dan hapus container lama jika berjalan
+            if [ "$(docker ps -q -f name=igas-product-frontend)" ]; then
+              docker stop igas-product-frontend
+              docker rm igas-product-frontend
+            fi
+
+            # Pull kode terbaru dari GitHub
+            git reset --hard
+            git pull origin main
+
+            # Build ulang image Docker dengan opsi no-cache agar benar-benar fresh
+            docker build -t igas-product-frontend .
+
+            # Jalankan container baru
+
+            docker run -d --name igas-product-frontend -p 3006:3006 igas-product-frontend
+
+            # Bersihkan image yang tidak digunakan
+            docker image prune -af
